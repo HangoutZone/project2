@@ -1,0 +1,200 @@
+// PatientF.cpp : This file contains the 'main' function. Program execution begins and ends there.
+//
+
+#include "pch.h"
+#include <iostream>
+
+using namespace std;
+
+class PatientAccount {
+private:
+	int charges;
+	int days;
+	int dailyRate;
+
+public:
+	PatientAccount(int d, int daRa)
+	{
+		charges = 0;
+		days = d;
+		dailyRate = daRa;
+	}
+	int setDays(int d)
+	{
+		days = d;
+	}
+	int getDays()
+	{
+		return days;
+	}
+	int setDailyRate(int daRa)
+	{
+		dailyRate = daRa;
+	}
+	int getDailyRate()
+	{
+		return dailyRate;
+	}
+	int stayTotal()
+	{
+		return days * getDailyRate();
+	}
+	int setCharge(int t)
+	{
+		charges += t;
+		return charges;
+	}
+	int getCharge()
+	{
+		return charges;
+	}
+};
+
+class Surgery {
+private:
+	int LUNG = 200;
+	int HEART = 500;
+	int BRAIN = 2000;
+	int HAND = 100;
+	int LEG = 50;
+
+public:
+	Surgery(int l, int h, int b, int ha, int le)
+	{
+		LUNG = l;
+		HEART = h;
+		BRAIN = b;
+		HAND = ha;
+		LEG = le;
+	}
+	int getLung()
+	{
+		return LUNG;
+	}
+	int getHeart()
+	{
+		return HEART;
+	}
+	int getBrain()
+	{
+		return BRAIN;
+	}
+	int getHand()
+	{
+		return HAND;
+	}
+	int getLeg()
+	{
+		return LEG;
+	}
+};
+
+class Pharmacy {
+private:
+	int PAINMEDS = 100;
+	int ANTIBIOTIC = 300;
+	int HEARTMEDS = 500;
+	int BRAINMEDS = 700;
+	int HANDMEDS = 250;
+public:
+	Pharmacy(int p, int a, int h, int b, int ha)
+	{
+		PAINMEDS = p;
+		ANTIBIOTIC = a;
+		HEARTMEDS = h;
+		BRAINMEDS = b;
+		HANDMEDS = ha;
+	} 
+	int getPainMeds()
+	{
+		return PAINMEDS;
+	}
+	int getAntibiotic()
+	{
+		return ANTIBIOTIC;
+	}
+	int getHeartMeds()
+	{
+		return HEARTMEDS;
+	}
+	int getBrainMeds()
+	{
+		return BRAINMEDS;
+	}
+	int getHandMeds()
+	{
+		return HANDMEDS;
+	}
+};
+
+int main()
+{
+	int x = 0;
+	int m = 0;
+	int sur = 0;
+	int med = 0;
+
+	PatientAccount patOne(14, 230);
+	Surgery surgeryOne(200, 500, 2000, 100, 50);
+	Pharmacy meds(100, 300, 500, 700, 250);
+
+	cout << "Choose the type of surgery." << endl;
+	cout << "lung, heart, brain, hand, or leg" << endl;
+	cin >> x;
+
+	if (x == 1)
+	{
+		sur = surgeryOne.getLung();
+	}
+	if (x == 2)
+	{
+		sur = surgeryOne.getHeart();
+	}
+	if (x == 3)
+	{
+		sur = surgeryOne.getBrain();
+	}
+	if (x == 4)
+	{
+		sur = surgeryOne.getHand();
+	}
+	if (x == 5)
+	{
+		sur = surgeryOne.getLeg();
+	}
+	if (x > 5)
+		cout << "Not an Option" << endl;
+
+	cout << "Choose the type of medication." << endl;
+	cout << "pain meds, antibiotic, heart meds, brain meds, or hand meds" << endl;
+	cin >> m;
+
+	if (m == 1)
+	{
+		med = meds.getPainMeds();
+	}
+	if (m == 2)
+	{
+		med = meds.getAntibiotic();
+	}
+	if (m == 3)
+	{
+		med = meds.getHeartMeds();
+	}
+	if (m == 4)
+	{
+		med = meds.getBrainMeds();
+	}
+	if (m == 5)
+	{
+		med = meds.getHandMeds();
+	}
+	if (m > 5)
+		cout << "Not an Option" << endl;
+
+	int totalBill = patOne.stayTotal() + sur + med;
+
+	cout << "Total charge: $" << totalBill << endl;
+}
+
+
